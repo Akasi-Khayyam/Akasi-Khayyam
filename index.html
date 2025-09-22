@@ -37,6 +37,20 @@ body {
     /* bottom layer: your photo */
     url('Assets/Background-atmosphere.jpg')
       no-repeat center/cover;
+
+  /* ———————— Akasi-Khayyam-logo ———————— */
+    .bottom-logo {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      width: 25vw;
+      max-width: 150px;
+      height: auto;
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+  
 }
     
     ul { list-style: none; padding: 0; }
@@ -67,5 +81,11 @@ body {
       </a>
     </li>
   </ul>
+  <img
+    src="Assets/Akasi-Khayyam-logo.png"
+    alt="Akasi Khayyam Logo"
+    class="bottom-logo"
+  />
+
 </body>
 </html>
