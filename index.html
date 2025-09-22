@@ -26,9 +26,13 @@ body {
     url("data:image/svg+xml,%3Csvg%20width='41'%20height='41'%20xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle%20cx='20.5'%20cy='20.5'%20r='2.5'%20fill='%23666666'%20fill-opacity='0.4'/%3E%3C/svg%3E")
       repeat 20px 20px/40px 40px,
 
-    /* middle layer: soft diagonal gradient (optional) */
-    linear-gradient(135deg, #e3f2fd 0%, #fafafa 50%, #f5efe6 100%)
-      no-repeat center/cover,
+    /* middle layer: soft diagonal gradient (optional) *//* translucent gradient in the middle */
+    linear-gradient(
+      135deg,
+      rgba(227, 242, 253, 0.3) 0%,
+      rgba(250, 250, 250, 0.3) 50%,
+      rgba(245, 239, 230, 0.3) 100%
+    ) no-repeat center/cover,
 
     /* bottom layer: your photo */
     url('Assets/Background-1.jpg')
