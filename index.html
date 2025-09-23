@@ -49,7 +49,18 @@ body {
       z-index: 1000;
       pointer-events: none;
     }
-
+  /* ———————— Brand Logo  ———————— */
+    .brand-logo {
+      position: fixed;
+      left: 50%;
+      top: 60%;               /* slightly below halfway line */
+      transform: translate(-50%, -50%);
+      width: 50vw;            /* covers half the screen width */
+      max-width: 480px;       /* cap size on large screens */
+      height: auto;
+      z-index: 1000;
+      pointer-events: none
+    }
   
 }
     
@@ -86,6 +97,13 @@ body {
     alt="Akasi Khayyam Logo"
     class="bottom-logo"
   />
+
+  <img
+  src="Assets/Khayyam-logo.jpg"
+  alt="Khayyam Logo"
+  class="brand-logo"
+/>
+
 
 </body>
 </html>
