@@ -6,67 +6,109 @@
   <title>My Smart Card</title>
   
   <style>
-    h1 {font-family:'Amiri', serif; font-weight: 800; font-size: 4.2rem; margin-bottom: 1.5rem;color: #222;}
-    /* body { font-family: 'Playfair Display', serif; text-align: center; padding: 2.5rem; 
-    background-color: #fafafa; background: url('Assets/Background-1.jpg') center/cover repeat; } */
-    /* html { height: 100% } */
-    html {
-  height: 100%;
-}
+    h1 {
+    font-family: 'Amiri', serif;
+    font-weight: 800;
+    font-size: 4.2rem;
+    margin-bottom: 1.5rem;
+    color: #222;
+  }
+    
+    html { height: 100%; }
 
-body {
-  min-height: 80vh;
-  margin: 0;
-  padding: 2.5rem;
-  font-family: sans-serif;
-  text-align: center;
+    body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 2.5rem;
+    font-family: sans-serif;
+    text-align: center;
 
-  background:
-    /* top layer: dot grid */
-    url("data:image/svg+xml,%3Csvg%20width='41'%20height='41'%20xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle%20cx='20.5'%20cy='20.5'%20r='2.5'%20fill='%23666666'%20fill-opacity='0.4'/%3E%3C/svg%3E")
-      repeat 20px 20px/40px 40px,
+      background:
+         /* top layer: dot grid */
+        url("data:image/svg+xml,%3Csvg%20width='41'%20height='41'%20xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle%20cx='20.5'%20cy='20.5'%20r='2.5'%20fill='%23666666'%20fill-opacity='0.4'/%3E%3C/svg%3E")
+          repeat 20px 20px/40px 40px,
 
-    /* middle layer: soft diagonal gradient (optional) *//* translucent gradient in the middle */
-    linear-gradient(
-      135deg,
-      rgba(227, 242, 253, 0.3) 0%,
-      rgba(250, 250, 250, 0.3) 50%,
-      rgba(245, 239, 230, 0.3) 100%
-    ) no-repeat center/cover,
+        /* middle layer: soft diagonal gradient (optional) *//* translucent gradient in the middle */
+        linear-gradient(
+          135deg,
+          rgba(227, 242, 253, 0.3) 0%,
+          rgba(250, 250, 250, 0.3) 50%,
+          rgba(245, 239, 230, 0.3) 100%
+        ) no-repeat center/cover,
 
-    /* bottom layer: your photo */
-    url('Assets/Background-atmosphere.jpg')
-      no-repeat center/cover;
+        /*Background Image*//*atmosphere, fabric, glass, grunge, paper, wood*/
+        url('Assets/Background-atmosphere.jpg') no-repeat center/cover;
+  }
 
-  /* ———————— Akasi-Khayyam-logo ———————— */
-    .bottom-logo {
-      position: fixed;
-      bottom: 1rem;
-      right: 1rem;
-      width: 25vw;
-      max-width: 150px;
-      height: auto;
-      z-index: 1000;
-      pointer-events: none;
-    }
-  /* ———————— Brand Logo  ———————— */
-    .brand-logo {
-      position: fixed;
-      left: 50%;
-      top: 68.5%;               /* slightly below halfway line */
-      transform: translate(-50%, -50%);
-      width: 45vw;            /* covers half the screen width */
-      max-width: 480px;       /* cap size on large screens */
-      height: auto;
-      z-index: 1000;
-      pointer-events: none
-    }
-  
-}
     
     ul { list-style: none; padding: 0; }
     li { margin: 1rem 0; }
-    a { text-decoration: none; color: #0366d6; font-size: 1.3rem; font-family: 'Noto Nastaliq Urdu', sans-serif; font-weight: 550 }
+    a {
+    text-decoration: none;
+    color: #0366d6;
+    font-size: 1.3rem;
+    font-family: 'Noto Nastaliq Urdu', sans-serif;
+    font-weight: 550;
+    }
+
+
+
+    /* small logo bottom-right (top-level selector) */
+  .bottom-logo {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    width: 25vw;
+    max-width: 150px;
+    height: auto;
+    z-index: 1000;
+    pointer-events: none;
+    display: block;
+  }
+
+  /* centered brand image slightly below midline (top-level selector) */
+  .brand-logo {
+    position: fixed;
+    left: 50%;
+    top: 60%;                      /* slightly below halfway */
+    transform: translate(-50%, -50%);
+    width: 50vw;                   /* target half the viewport width */
+    max-width: 520px;              /* cap on large screens */
+    max-height: 55vh;              /* cap height to avoid overflow */
+    object-fit: cover;
+    height: auto;
+    z-index: 1000;
+    pointer-events: none;
+    display: block;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 980px) {
+    h1 { font-size: 3.2rem; }
+    a { font-size: 1.15rem; }
+
+    .bottom-logo { width: 28vw; max-width: 130px; }
+    .brand-logo { width: 60vw; max-width: 420px; max-height: 48vh; top: 62%; }
+  }
+
+  @media (max-width: 520px) {
+    h1 { font-size: 2.2rem; }
+    a { font-size: 1rem; }
+
+    /* On narrow phones keep the centered image smaller and higher */
+    .brand-logo {
+      width: 80vw;
+      max-width: none;
+      max-height: 36vh;
+      top: 52%;
+      transform: translate(-50%, -48%);
+    }
+
+    /* optional: hide the small bottom logo on tiny screens */
+    .bottom-logo { display: none; }
+  }
+
+    
   </style>
 <link
     href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Scheherazade+New:wght@400;700&family=Lateef&family=Samim:wght@400;700&family=Harmattan&display=swap"
