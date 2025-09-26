@@ -13,6 +13,11 @@
     
    html, body { height: 100%; }
 
+   /* --- ADDED: a simple CSS variable for brand size so spacing can be computed --- */
+    :root {
+      --brand-width: clamp(160px, 35vw, 320px); /* reduced from previous 50vw ideal to ~35vw */
+    }
+
    body {
     min-height: 100vh;
     margin: 0;
@@ -45,7 +50,8 @@
       max-width: 720px;
       margin: 0 auto;
       padding-top: 1.5rem;
-      direction: rtl;          /* Persian/Arabic flow */
+      padding-bottom: calc(var(--brand-width) / 1.6 + 1.5rem);
+      /*direction: rtl;          /* Persian/Arabic flow */ */
     }
 
     h1 {
@@ -90,15 +96,15 @@
       left: 50%;
       top: 60%;                           /* slightly below halfway */
       transform: translate(-50%, -50%);
-      width: clamp(220px, 50vw, 520px);   /* roughly half the screen with caps */
+      width: var(--brand-width);          /* controlled size */
       max-height: 55vh;
       object-fit: cover;
       height: auto;
       z-index: 1000;                      /* below .content but above background */
       pointer-events: none;
-      opacity: 0.96;                      /* slight transparency to help text */
+      opacity: 0.96;
     }
-
+    
     /* If the centered image still covers content visually, reduce its visual dominance */
     .brand-logo--subtle { filter: saturate(0.9) contrast(0.95); opacity: 0.9; }
 
