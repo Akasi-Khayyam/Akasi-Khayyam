@@ -1,142 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="fa">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Smart Card</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Akasi Khayyam — Restore</title>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
-
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
+    /* minimal reset */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
 
-    /* --- single variable to tweak brand image size --- */
-    :root { --brand-width: clamp(160px, 34vw, 300px); }
-
-   
-body {
-  /* remove overflow: hidden; */ 
-  overflow-y: auto;
-  padding-bottom: env(safe-area-inset-bottom, 1rem); /* respect notch / home bar */
-}
-
-/* content stays above fixed visuals */
-.content {
-  position: relative;
-  z-index: 2000; /* ensure text is always above the brand image */
-  padding-bottom: calc(var(--brand-width) / 1.6 + 2rem); /* extra gap under links */
-  direction: rtl; /* ensure Persian layout */
-}
-
-/* bottom logo -- keep small but allow it to shrink on short viewports */
-.bottom-logo {
-  position: fixed;
-  bottom: max(1rem, env(safe-area-inset-bottom, 0.5rem));
-  right: 1rem;
-  width: clamp(64px, 20vw, 140px);
-  height: auto;
-  z-index: 2200;
-  pointer-events: none;
-}
-
-/* centered brand image: limit by viewport height, reduce top on short screens */
-.brand-logo {
-  position: fixed;
-  left: 50%;
-  top: 60%;
-  transform: translate(-50%, -50%);
-  width: var(--brand-width);
-  max-width: 90%;
-  max-height: 42vh;         /* critical: stop it from covering too much vertical space */
-  height: auto;
-  z-index: 1000;
-  pointer-events: none;
-  opacity: 0.96;
-}
-
-/* landscape / short viewport: move image up and shrink */
-@media (orientation: landscape), (max-height: 600px) {
-  .brand-logo {
-    top: 50%;
-    width: clamp(140px, 36vw, 260px);
-    max-height: 36vh;
-  }
-  .content { padding-bottom: calc(var(--brand-width) / 1.8 + 1rem); }
-}
-
-/* narrow phones: increase top so image doesn't overlap links */
-@media (max-width: 420px) {
-  .brand-logo {
-    top: 54%;
-    width: clamp(140px, 60vw, 260px);
-    max-height: 38vh;
-    transform: translate(-50%, -48%);
-  }
-  .bottom-logo { display: none; }
-}
-    h1 {
-      font-family: 'Amiri', serif;
-      font-weight: 800;
-      font-size: clamp(2.2rem, 4.2vw, 4.2rem);
-      margin-bottom: 1.2rem;
-      color: #222;
+    /* page background (simple, ensure it loads) */
+    body{
+      font-family: system-ui, "Noto Nastaliq Urdu", sans-serif;
+      text-align:center;              /* keep text centered */
+      margin:0;
+      padding:2.5rem;
+      background-color:#fafafa;
+      background-image:
+        linear-gradient(135deg, rgba(227,242,253,0.18), rgba(250,250,250,0.18)),
+        url("Assets/Background-atmosphere.jpg");
+      background-repeat:no-repeat;
+      background-position:center;
+      background-size:cover;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-y:auto;                /* allow natural scrolling */
     }
 
-    ul { list-style: none; padding: 0; }
-    li { margin: 1rem 0; }
-
-    a {
-      text-decoration: none;
-      color: #0366d6;
-      font-size: clamp(0.95rem, 1.6vw, 1.3rem);
-      font-family: 'Noto Nastaliq Urdu', sans-serif;
-      font-weight: 550;
-      background: rgba(255,255,255,0.6);
-      padding: 0.32rem 0.6rem;
-      border-radius: 6px;
-      display: inline-block;
+    /* content sits above decorative images */
+    .content{
+      position:relative;
+      z-index:2000;                   /* ensure visibility above brand image */
+      max-width:720px;
+      margin:0 auto;
+      direction:rtl;
+      padding-top:1.5rem;
+      padding-bottom:4.5rem;          /* safe space under links */
     }
 
-    /* Small logo pinned bottom-right */
-    .bottom-logo {
-      position: fixed;
-      bottom: 1rem;
-      right: 1rem;
-      width: clamp(80px, 22vw, 150px);
-      height: auto;
-      z-index: 1200;
-      pointer-events: none;
-      display: block;
+    h1{ font-family:'Amiri',serif; font-weight:800; font-size:clamp(2rem,4.2vw,3.8rem); color:#222; margin-bottom:1rem}
+
+    ul{ list-style:none; margin-top:.6rem }
+    li{ margin: .9rem 0 }
+    a{
+      display:inline-block;
+      text-decoration:none;
+      color:#0366d6;
+      background:rgba(255,255,255,0.7);
+      padding:.36rem .6rem;
+      border-radius:6px;
+      font-size:clamp(.95rem,1.6vw,1.15rem);
+      font-family:'Noto Nastaliq Urdu',sans-serif;
     }
 
-    /* Centered, fixed brand image placed slightly below the midline (reduced) */
-    .brand-logo {
-      position: fixed;
-      left: 50%;
-      top: 60%;                           /* slightly below halfway */
-      transform: translate(-50%, -50%);
-      width: var(--brand-width);          /* controlled size */
-      max-height: 48vh;                   /* avoid covering too much vertical space */
-      object-fit: cover;
-      height: auto;
-      z-index: 1000;                      /* below .content but above background */
-      pointer-events: none;
-      opacity: 0.96;
+    /* centered decorative brand image — small and restrained */
+    .brand-logo{
+      position:fixed;
+      left:50%;
+      top:66%;                          /* lower so it doesn't clash with header */
+      transform:translate(-50%,-50%);
+      width:30vw;                       /* smaller baseline */
+      max-width:240px;                  /* strong cap */
+      max-height:36vh;                  /* do not exceed vertical space */
+      object-fit:cover;
+      height:auto;
+      z-index:1000;                     /* below .content */
+      pointer-events:none;
+      opacity:.98;
     }
 
-    /* Responsive adjustments */
-    @media (max-width: 980px) {
-      :root { --brand-width: clamp(160px, 50vw, 320px); }
-      .brand-logo { top: 62%; max-height: 44vh; }
-      .bottom-logo { width: clamp(70px, 24vw, 130px); }
+    /* bottom-right logo */
+    .bottom-logo{
+      position:fixed;
+      right:1rem;
+      bottom:1rem;
+      width:18vw;
+      max-width:120px;
+      height:auto;
+      z-index:2200;
+      pointer-events:none;
     }
 
-    @media (max-width: 520px) {
-      body { padding: 1rem; }
-      :root { --brand-width: clamp(140px, 70vw, 260px); }
-      .brand-logo { top: 54%; transform: translate(-50%, -48%); max-height: 36vh; }
-      .bottom-logo { display: none; }    /* hide small logo on very small screens */
-      .content { padding-top: 0.6rem; padding-bottom: calc(var(--brand-width) / 1.6 + 1rem); }
+    /* small-screen tweaks */
+    @media (max-width:520px){
+      .brand-logo{ top:58%; width:48vw; max-width:200px; max-height:34vh; transform:translate(-50%,-48%) }
+      .bottom-logo{ display:block; width:22vw; max-width:100px }
+      body{ padding:1rem }
+      .content{ padding-bottom: calc( var(--safe,4.5rem) ) }
     }
   </style>
 </head>
@@ -144,24 +95,13 @@ body {
   <div class="content">
     <h1>عکاسی خیام</h1>
     <ul>
-      <li>
-        <a href="https://wa.me/+989015012736" target="_blank" rel="noopener">
-          WhatsApp - تماس داخل واتساپ
-        </a>
-      </li>
-      <li>
-        <a href="https://instagram.com/akasikhayyam" target="_blank" rel="noopener">
-          Instagram - پیج اینستاگرام
-        </a>
-      </li>
-      <li>
-        <a href="https://t.me/akasikhayyam" target="_blank" rel="noopener">
-          Telegram - تماس داخل تلگرام
-        </a>
-      </li>
+      <li><a href="https://wa.me/+989015012736" target="_blank" rel="noopener">WhatsApp - تماس داخل واتساپ</a></li>
+      <li><a href="https://instagram.com/akasikhayyam" target="_blank" rel="noopener">Instagram - پیج اینستاگرام</a></li>
+      <li><a href="https://t.me/akasikhayyam" target="_blank" rel="noopener">Telegram - تماس داخل تلگرام</a></li>
     </ul>
   </div>
 
+  <!-- fixed images (decorative) -->
   <img src="Assets/Khayyam-logo.jpg" alt="Khayyam Logo" class="brand-logo" />
   <img src="Assets/Akasi-Khayyam-logo.png" alt="Akasi Khayyam small logo" class="bottom-logo" />
 </body>
