@@ -56,18 +56,25 @@
 
     /* centered decorative brand image — small and restrained */
     .brand-logo{
-      display: block;
+        display: block;
+  margin: 4rem auto 0 auto;  /* push it down after text */
+  width: 30vw;
+  max-width: 200px;
+  height: auto;
+  object-fit: cover;
+  opacity: 0.98;
+      /* display: fixed;
       left:50%;
-      top:75vh;                          /* lower so it doesn't clash with header */
+      top:75vh;                          
       transform:translate(-50%);
-      width:30vw;                       /* smaller baseline */
-      max-width:200px;                  /* strong cap */
-      max-height:30vh;                  /* do not exceed vertical space */
+      width:30vw;                       
+      max-width:200px;                 
+      max-height:30vh;                  
       object-fit:cover;
       height:auto;
-      z-index:1000;                     /* below .content */
+      z-index:1000;                     
       pointer-events:none;
-      opacity:.98;
+      opacity:.98; */
     }
 
     /* bottom-right logo */
